@@ -24,4 +24,27 @@
     </form>
 </div>
 
+<?php
+if (isset($_POST['register'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $role = $_POST['role'];
+
+    $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $name, $email, $password, $role);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Registration successful! Please log in.'); window.location='login.php';</script>";
+    } else {
+        echo "<script>alert('Error: Could not register user.');</script>";
+    }
+
+    $stmt->close();
+}
+$conn->close();
+?>
+
+
 <?php include('includes/footer.php'); ?>
