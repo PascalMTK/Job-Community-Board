@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Contact JobHunt Namibia - Get in touch with our team for job search assistance and employer services">
+   <title>Contact Us - JobHunt</title>
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/contact.css">
+   <link rel="stylesheet" href="css/style.css"> 
+
+   <!-- font awesome cdn link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+<header class="header" role="banner">
+   <section class="flex">
+      <button id="menu-btn" class="fas fa-bars-staggered" aria-label="Toggle navigation menu"></button>
+
+      <a href="home.html" class="logo" aria-label="JobHunt homepage">
+         <i class="fas fa-briefcase" aria-hidden="true"></i> JobHunt.
+      </a>
+
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+         <a href="home.html">home</a>
+         <a href="about.html">about us</a>
+         <a href="jobs.html">all jobs</a>
+         <a href="contact.html" aria-current="page">contact us</a>
+         <a href="login.html">account</a>
+         <a href="dashboard.html">dashboard</a>
+      </nav>
+
+      <a href="#" class="btn" style="margin-top: 0;">post job</a>
+   </section>
+</header>
+<!-- header section ends -->
+
+<main role="main">
+   <!-- contact us section starts  -->
+   <section aria-labelledby="contact-title">
+      <h1 id="contact-title" class="section-title">contact us</h1>
+
+      <section class="contact">
+         <div class="box-container">
+            <div class="box">
+               <i class="fas fa-phone" aria-hidden="true"></i>
+               <a href="tel:+264812345678">+264 81 234 5678</a>
+               <a href="tel:+264612345678">+264 61 234 5678</a>
+            </div>
+
+            <div class="box">
+               <i class="fas fa-envelope" aria-hidden="true"></i>
+               <a href="mailto:info@jobhuntnamibia.com">info@jobhuntnamibia.com</a>
+               <a href="mailto:support@jobhuntnamibia.com">support@jobhuntnamibia.com</a>
+            </div>
+
+            <div class="box">
+               <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+               <a href="https://maps.google.com/?q=Office+12,+Independence+Avenue,+Windhoek,+Namibia" target="_blank">
+                  Office 12, Independence Avenue, Windhoek, Namibia
+               </a>
+            </div>
+         </div>
+
+         <form action="" method="post" aria-labelledby="form-title">
+            <h2 id="form-title">drop your message</h2>
+            <div class="flex">
+               <div class="box">
+                  <label for="name">name <span>*</span></label>
+                  <input type="text" id="name" name="name" required maxlength="20" placeholder="enter your name" class="input">
+               </div>
+               <div class="box">
+                  <label for="email">email <span>*</span></label>
+                  <input type="email" id="email" name="email" required maxlength="50" placeholder="enter your email" class="input">
+               </div>
+               <div class="box">
+                  <label for="number">number <span>*</span></label>
+                  <input type="tel" id="number" name="number" required pattern="[0-9]{10}" placeholder="enter your phone number" class="input">
+               </div>
+               <div class="box">
+                  <label for="role">role <span>*</span></label>
+                  <select id="role" name="role" required class="input">
+                     <option value="">select your role</option>
+                     <option value="employee">job seeker (employee)</option>
+                     <option value="employer">job provider (employer)</option>
+                  </select>
+               </div>
+            </div>
+            <div class="box">
+               <label for="message">message <span>*</span></label>
+               <textarea id="message" name="message" class="input" required maxlength="1000" placeholder="enter your message" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="send message" name="send" class="btn">
+         </form>
+      </section>
+   </section>
+   <!-- contact us section ends -->
+</main>
+
+<!-- footer section starts  -->
+<footer class="footer" role="contentinfo">
+   <section class="grid">
+      <div class="box">
+         <h3>quick links</h3>
+         <a href="home.html"><i class="fas fa-angle-right" aria-hidden="true"></i> home</a>
+         <a href="about.html"><i class="fas fa-angle-right" aria-hidden="true"></i> about</a>
+         <a href="jobs.html"><i class="fas fa-angle-right" aria-hidden="true"></i> all jobs</a>
+         <a href="contact.html"><i class="fas fa-angle-right" aria-hidden="true"></i> contact us</a>
+         <a href="#"><i class="fas fa-angle-right" aria-hidden="true"></i> filter search</a>
+      </div>
+
+      <div class="box">
+         <h3>extra links</h3>
+         <a href="#"><i class="fas fa-angle-right" aria-hidden="true"></i> account</a>
+         <a href="login.html"><i class="fas fa-angle-right" aria-hidden="true"></i> login</a>
+         <a href="register.html"><i class="fas fa-angle-right" aria-hidden="true"></i> register</a>
+         <a href="#"><i class="fas fa-angle-right" aria-hidden="true"></i> post job</a>
+         <a href="#"><i class="fas fa-angle-right" aria-hidden="true"></i> dashboard</a>
+      </div>
+
+      <div class="box">
+         <h3>follow us</h3>
+         <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i> facebook</a>
+         <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i> twitter</a>
+         <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i> instagram</a>
+         <a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i> linkedin</a>
+         <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i> youtube</a>
+      </div>
+   </section>
+
+   <div class="credit">&copy; copyright @ 2025 by <span>Group 83</span> | all rights reserved!</div>
+</footer>
+<!-- footer section ends -->
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+   
+</body>
+</html>
