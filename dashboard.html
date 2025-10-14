@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title data-en="Dashboard - JobHunt" data-af="Kontroleskerm - WerkJag">Dashboard - JobHunt</title>
+
+   <!-- custom css file link -->
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- header section starts -->
+<header class="header">
+   <section class="flex">
+      <div id="menu-btn" class="fas fa-bars-staggered"></div>
+      <a href="home.html" class="logo"><i class="fas fa-user-tie"></i> <span data-en="JobHunt" data-af="WerkJag">JobHunt</span></a>
+      <nav class="navbar">
+         <a href="home.html" data-en="home" data-af="tuis">home</a>
+         <a href="about.html" data-en="about us" data-af="oor ons">about us</a>
+         <a href="jobs.html" data-en="all jobs" data-af="alle werke">all jobs</a>
+         <a href="contact.html" data-en="contact us" data-af="kontak ons">contact us</a>
+         <a href="login.html" data-en="account" data-af="rekening">account</a>
+         <a href="dashboard.html" class="active" data-en="dashboard" data-af="kontroleskerm">dashboard</a>
+      </nav>
+      <a href="#" class="btn" style="margin-top: 0;" data-en="post job" data-af="plaas werk">post job</a>
+   </section>
+</header>
+<!-- header section ends -->
+
+<!-- Dashboard Section -->
+<section class="dashboard" id="dashboard">
+   <h1 class="heading" data-en="Your Dashboard" data-af="Jou Kontroleskerm">Your Dashboard</h1>
+   
+   <!-- Statistics Cards -->
+   <div class="stats">
+      <div class="box" style="--i: 1;">
+         <i class="fas fa-file-alt"></i>
+         <h3 id="totalApplications">0</h3>
+         <p data-en="Total Applications" data-af="Totale Aansoeke">Total Applications</p>
+      </div>
+      <div class="box" style="--i: 2;">
+         <i class="fas fa-clock"></i>
+         <h3 id="pendingApplications">0</h3>
+         <p data-en="Pending Applications" data-af="Hangende Aansoeke">Pending Applications</p>
+      </div>
+      <div class="box" style="--i: 3;">
+         <i class="fas fa-check-circle"></i>
+         <h3 id="acceptedApplications">0</h3>
+         <p data-en="Accepted Applications" data-af="Aanvaarde Aansoeke">Accepted Applications</p>
+      </div>
+      <div class="box" style="--i: 4;">
+         <i class="fas fa-times-circle"></i>
+         <h3 id="rejectedApplications">0</h3>
+         <p data-en="Rejected Applications" data-af="Afgekeurde Aansoeke">Rejected Applications</p>
+      </div>
+   </div>
+   
+   <!-- Applications Section -->
+   <div class="applications">
+      <div class="section-header">
+         <h2 class="heading" style="margin: 0;" data-en="Your Job Applications" data-af="Jou Werksaansoeke">Your Job Applications</h2>
+         <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all" data-en="All" data-af="Alles">All</button>
+            <button class="filter-btn" data-filter="pending" data-en="Pending" data-af="Hangende">Pending</button>
+            <button class="filter-btn" data-filter="accepted" data-en="Accepted" data-af="Aanvaar">Accepted</button>
+            <button class="filter-btn" data-filter="rejected" data-en="Rejected" data-af="Afgekeur">Rejected</button>
+         </div>
+      </div>
+
+      <!-- Search and Filter Bar -->
+      <div class="search-filter-bar">
+         <input type="text" id="searchApplications" data-placeholder-en="Search applications..." data-placeholder-af="Soek aansoeke..." placeholder="Search applications...">
+         <select id="sortApplications">
+            <option value="date-desc" data-en="Newest First" data-af="Nuutste Eerste">Newest First</option>
+            <option value="date-asc" data-en="Oldest First" data-af="Oudste Eerste">Oldest First</option>
+            <option value="company-asc" data-en="Company A-Z" data-af="Maatskappy A-Z">Company A-Z</option>
+            <option value="company-desc" data-en="Company Z-A" data-af="Maatskappy Z-A">Company Z-A</option>
+         </select>
+      </div>
+
+      <!-- Applications List -->
+      <div class="box-container" id="applicationsList">
+         <!-- Applications will be dynamically loaded here -->
+      </div>
+   </div>
+</section>
+
+<!-- footer section starts -->
+<footer class="footer">
+   <section class="grid">
+      <div class="box" style="--i: 1;">
+         <h3 data-en="quick links" data-af="vinnige skakels">quick links</h3>
+         <a href="home.html" data-en="home" data-af="tuis"><i class="fas fa-angle-right"></i> home</a>
+         <a href="about.html" data-en="about" data-af="oor ons"><i class="fas fa-angle-right"></i> about</a>
+         <a href="jobs.html" data-en="all jobs" data-af="alle werke"><i class="fas fa-angle-right"></i> all jobs</a>
+         <a href="contact.html" data-en="contact us" data-af="kontak ons"><i class="fas fa-angle-right"></i> contact us</a>
+         <a href="dashboard.html" data-en="dashboard" data-af="kontroleskerm"><i class="fas fa-angle-right"></i> dashboard</a>
+      </div>
+      <div class="box" style="--i: 2;">
+         <h3 data-en="extra links" data-af="ekstra skakels">extra links</h3>
+         <a href="#" data-en="account" data-af="rekening"><i class="fas fa-angle-right"></i> account</a>
+         <a href="login.html" data-en="login" data-af="aanmeld"><i class="fas fa-angle-right"></i> login</a>
+         <a href="register.html" data-en="register" data-af="registreer"><i class="fas fa-angle-right"></i> register</a>
+         <a href="#" data-en="post job" data-af="plaas werk"><i class="fas fa-angle-right"></i> post job</a>
+         <a href="dashboard.html" data-en="dashboard" data-af="kontroleskerm"><i class="fas fa-angle-right"></i> dashboard</a>
+      </div>
+      <div class="box" style="--i: 3;">
+         <h3 data-en="follow us" data-af="volg ons">follow us</h3>
+         <a href="#"><i class="fab fa-facebook-f"></i> facebook</a>
+         <a href="#"><i class="fab fa-twitter"></i> twitter</a>
+         <a href="#"><i class="fab fa-instagram"></i> instagram</a>
+         <a href="#"><i class="fab fa-linkedin"></i> linkedin</a>
+         <a href="#"><i class="fab fa-youtube"></i> youtube</a>
+      </div>
+   </section>
+   <div class="credit" data-en="&copy; copyright @ 2025 by Group 83 | all rights reserved!" data-af="&copy; kopiereg @ 2025 deur Groep 83 | alle regte voorbehou!">&copy; copyright @ 2025 by <span>Group 83</span> | all rights reserved!</div>
+</footer>
+<!-- footer section ends -->
+
+<!-- settings panel -->
+<button class="settings-btn fas fa-cog" data-en="Settings" data-af="Instellings"></button>
+<div class="settings-panel">
+   <h3 data-en="Settings" data-af="Instellings">Settings</h3>
+   <div class="option">
+      <label for="dark-mode" data-en="Dark Mode" data-af="Donker Modus">Dark Mode</label>
+      <input type="checkbox" id="dark-mode">
+   </div>
+   <div class="option">
+      <label for="language" data-en="Language" data-af="Taal">Language</label>
+      <select id="language">
+         <option value="en" data-en="English" data-af="Engels">English</option>
+         <option value="af" data-en="Afrikaans" data-af="Afrikaans">Afrikaans</option>
+      </select>
+   </div>
+</div>
+
+<!-- Application Modal -->
+<div class="application-modal" id="applicationModal">
+   <div class="modal-content">
+      <button class="close-modal" onclick="closeApplicationModal()">
+         <i class="fas fa-times"></i>
+      </button>
+      
+      <h2 data-en="Apply for This Job" data-af="Doen Aansoek vir Hierdie Werk">Apply for This Job</h2>
+      
+      <form id="applicationForm">
+         <div class="form-group">
+            <label data-en="Full Name" data-af="Volle Naam">Full Name <span class="required">*</span></label>
+            <input type="text" class="input" data-placeholder-en="Enter your full name" data-placeholder-af="Voer jou volle naam in" placeholder="Enter your full name" required>
+         </div>
+
+         <div class="form-group">
+            <label data-en="Email Address" data-af="E-pos Adres">Email Address <span class="required">*</span></label>
+            <input type="email" class="input" data-placeholder-en="Enter your email" data-placeholder-af="Voer jou e-pos in" placeholder="Enter your email" required>
+         </div>
+
+         <div class="form-group">
+            <label data-en="Phone Number" data-af="Telefoonnommer">Phone Number <span class="required">*</span></label>
+            <input type="tel" class="input" data-placeholder-en="Enter your phone number" data-placeholder-af="Voer jou telefoonnommer in" placeholder="Enter your phone number" required>
+         </div>
+
+         <div class="form-group">
+            <label data-en="Upload CV/Resume" data-af="Laai CV/Curriculum Vitae Op">Upload CV/Resume <span class="required">*</span></label>
+            <label class="file-upload" for="cvUpload">
+               <i class="fas fa-cloud-upload-alt"></i>
+               <p data-en="Click to upload your CV" data-af="Klik om jou CV op te laai">Click to upload your CV</p>
+               <small data-en="PDF, DOC, DOCX (Max 5MB)" data-af="PDF, DOC, DOCX (Maks 5MB)">PDF, DOC, DOCX (Max 5MB)</small>
+               <input type="file" id="cvUpload" accept=".pdf,.doc,.docx" onchange="handleFileUpload(event)" required>
+            </label>
+            <div class="file-info" id="fileInfo">
+               <i class="fas fa-file"></i>
+               <span id="fileName"></span>
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label data-en="Cover Letter" data-af="Motiveringsbrief">Cover Letter</label>
+            <textarea class="input" data-placeholder-en="Tell us why you're a great fit for this position..." data-placeholder-af="Vertel ons hoekom jy perfek is vir hierdie posisie..." placeholder="Tell us why you're a great fit for this position..."></textarea>
+         </div>
+
+         <div class="form-group">
+            <label data-en="Years of Experience" data-af="Jare Ondervinding">Years of Experience</label>
+            <select class="input">
+               <option data-en="Select experience" data-af="Kies ondervinding">Select experience</option>
+               <option data-en="0-1 years" data-af="0-1 jaar">0-1 years</option>
+               <option data-en="1-3 years" data-af="1-3 jaar">1-3 years</option>
+               <option data-en="3-5 years" data-af="3-5 jaar">3-5 years</option>
+               <option data-en="5+ years" data-af="5+ jaar">5+ years</option>
+            </select>
+         </div>
+
+         <button type="submit" class="btn" data-en="Submit Application" data-af="Dien Aansoek In" style="width: 100%;">Submit Application</button>
+      </form>
+   </div>
+</div>
+
+<!-- Success Notification -->
+<div class="notification" id="notification">
+   <i class="fas fa-check-circle"></i>
+   <span id="notificationText">Success!</span>
+</div>
+
+<!-- custom js file link -->
+<script src="js/script.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
