@@ -7,6 +7,32 @@ include('includes/header.php');
 $success = '';
 $error = '';
 
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send'])) {
+    $name = sanitize_input($_POST['name']);
+    $email = sanitize_input($_POST['email']);
+    $phone = sanitize_input($_POST['number']);
+    $role = sanitize_input($_POST['role']);
+    $message = sanitize_input($_POST['message']);
+    
+    if (empty($name) || empty($email) || empty($phone) || empty($role) || empty($message)) {
+        $error = 'Please fill in all fields';
+    } else {
+        $stmt = $conn->prepare("INSERT INTO contact_messages (name, email, phone, role, message) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $name, $email, $phone, $role, $message);
+        
+        if ($stmt->execute()) {
+            $success = 'Message sent successfully! We will get back to you soon.';
+        } else {
+            $error = 'Failed to send message. Please try again.';
+        }
+        $stmt->close();
+    }
+}
+?>
+<?php session_start(); ?>
+
 <main role="main">
    <!-- contact us section starts  -->
    <section aria-labelledby="contact-title">
