@@ -123,3 +123,79 @@ include('includes/functions.php');
 </section>
 <!-- jobs section ends -->
 
+<style>
+.jobs-filter {
+   padding: 2rem 10%;
+   background: #f5f5f5;
+}
+
+.jobs-filter .heading {
+   text-align: center;
+   margin-bottom: 2rem;
+   font-size: 3rem;
+   color: var(--black);
+}
+
+.filter-form .flex {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+   gap: 1.5rem;
+   margin-bottom: 2rem;
+}
+
+.filter-form .box label {
+   display: block;
+   margin-bottom: 0.5rem;
+   font-size: 1.6rem;
+   color: var(--black);
+}
+
+.filter-form .flex-btn {
+   display: flex;
+   gap: 1rem;
+   justify-content: center;
+}
+
+.jobs-container .heading-bar {
+   padding: 2rem 10%;
+   text-align: center;
+}
+
+.jobs-container .heading-bar h2 {
+   font-size: 2.5rem;
+   color: var(--black);
+}
+
+.job-item .category {
+   font-size: 1.4rem;
+   color: #666;
+   margin: 0.5rem 0;
+}
+
+.job-item .description {
+   font-size: 1.4rem;
+   color: #777;
+   line-height: 1.6;
+   margin: 1rem 0;
+}
+
+.job-item .deadline {
+   font-size: 1.3rem;
+   color: #e74c3c;
+   margin-top: 1rem;
+}
+
+.empty {
+   text-align: center;
+   padding: 3rem;
+   grid-column: 1 / -1;
+}
+
+.empty p {
+   font-size: 2rem;
+   color: #777;
+   margin-bottom: 2rem;
+}
+</style>
+
+<?php include('includes/footer.php'); ?>
