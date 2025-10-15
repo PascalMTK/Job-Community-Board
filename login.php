@@ -1,51 +1,94 @@
-<?php include('includes/header.php'); ?>
-<?php include('includes/connection.php'); ?>
-<?php session_start(); ?>
+<?php 
+session_start();
+include('includes/connection.php');
+include('includes/functions.php');
 
-<div class="form-container">
-    <h2>Login</h2>
-    <form method="POST" action="">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+// Redirect if already logged in
+if (is_logged_in()) {
+    if (is_employer()) {
+        redirect('employer_home.php');
+    } else {
+        redirect('student_home.php');
+    }
+}
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+$error = '';
 
-        <button type="submit" name="login">Login</button>
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $email = sanitize_input($_POST['email']);
+    $password = $_POST['pass'];
+    
+    if (empty($email) || empty($password)) {
+        $error = 'Please fill in all fields';
+    } else {
+        // Check user credentials
+        $stmt = $conn->prepare("SELECT id, name, email, password, role FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
+            
+            // Verify password
+            if (password_verify($password, $user['password'])) {
+                // Set session variables
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_name'] = $user['name'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
+                
+                // Redirect based on role
+                if ($user['role'] == 'employer') {
+                    redirect('employer_home.php');
+                } else {
+                    redirect('student_home.php');
+                }
+            } else {
+                $error = 'Invalid email or password';
+            }
+        } else {
+            $error = 'Invalid email or password';
+        }
+        $stmt->close();
+    }
+}
 
-        <p>Don’t have an account? <a href="register.php">Register here</a></p>
-    </form>
+include('includes/header.php');
+?>
+
+<!-- account section starts  -->
+
+<div class="account-form-container">
+
+   <section class="account-form">
+
+      <form action="" method="post">
+         <h3>welcome back!</h3>
+         
+         <?php if ($error): ?>
+            <p style="color: red; text-align: center;"><?php echo $error; ?></p>
+         <?php endif; ?>
+         
+         <input type="email" required name="email" maxlength="50" placeholder="enter your email" class="input" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+         <input type="password" required name="pass" maxlength="20" placeholder="enter your password" class="input">
+         <p>don't have an account? <a href="register.php">register now</a></p>
+         <input type="submit" value="login now" name="submit" class="btn">
+      </form>
+      
+      <!-- <div style="margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px;">
+         <p style="margin: 5px 0;"><strong>Test Accounts:</strong></p>
+         <p style="margin: 5px 0;">Employer: employer@test.com</p>
+         <p style="margin: 5px 0;">Student: student@test.com</p>
+         <p style="margin: 5px 0;">Password: password123</p>
+      </div> -->
+   
+   </section>
+
 </div>
 
-<?php
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+<!-- account section ends -->
 
-    $sql = "SELECT * FROM users WHERE email=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['name'] = $user['name'];
-
-            echo "<script>alert('Welcome back, " . $user['name'] . "!'); window.location='index.php';</script>";
-        } else {
-            echo "<script>alert('Incorrect password');</script>";
-        }
-    } else {
-        echo "<script>alert('User not found');</script>";
-    }
-
-    $stmt->close();
-}
-$conn->close();
-?>
 
 <?php include('includes/footer.php'); ?>
