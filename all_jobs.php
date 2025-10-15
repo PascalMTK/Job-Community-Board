@@ -3,6 +3,68 @@ session_start();
 include('includes/connection.php');
 include('includes/functions.php');
 
+// Get filter parameters
+$category_id = isset($_GET['category']) ? intval($_GET['category']) : 0;
+$job_type = isset($_GET['type']) ? sanitize_input($_GET['type']) : '';
+$location = isset($_GET['location']) ? sanitize_input($_GET['location']) : '';
+$search = isset($_GET['search']) ? sanitize_input($_GET['search']) : '';
+
+// Build query
+$query = "SELECT j.*, u.name as employer_name, c.name as category_name 
+          FROM jobs j 
+          LEFT JOIN users u ON j.employer_id = u.id 
+          LEFT JOIN categories c ON j.category_id = c.id 
+          WHERE j.status = 'active'";
+
+$params = [];
+$types = '';
+
+if ($category_id > 0) {
+    $query .= " AND j.category_id = ?";
+    $params[] = $category_id;
+    $types .= 'i';
+}
+
+if ($job_type) {
+    $query .= " AND j.job_type = ?";
+    $params[] = $job_type;
+    $types .= 's';
+}
+
+if ($location) {
+    $query .= " AND j.location LIKE ?";
+    $params[] = "%$location%";
+    $types .= 's';
+}
+
+if ($search) {
+    $query .= " AND (j.title LIKE ? OR j.company_name LIKE ? OR j.description LIKE ?)";
+    $search_term = "%$search%";
+    $params[] = $search_term;
+    $params[] = $search_term;
+    $params[] = $search_term;
+    $types .= 'sss';
+}
+
+$query .= " ORDER BY j.created_at DESC";
+
+$stmt = $conn->prepare($query);
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+$stmt->execute();
+$jobs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+// Get all categories for filter
+$categories = $conn->query("SELECT * FROM categories ORDER BY name ASC")->fetch_all(MYSQLI_ASSOC);
+
+// Get unique locations
+$locations = $conn->query("SELECT DISTINCT location FROM jobs WHERE status = 'active' ORDER BY location ASC")->fetch_all(MYSQLI_ASSOC);
+
+include('includes/header.php');
+?>
+
 <!-- jobs filter section starts -->
 <section class="jobs-filter">
    <h1 class="heading">All Available Jobs</h1>
