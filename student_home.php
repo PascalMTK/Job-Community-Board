@@ -81,3 +81,132 @@ require_once('includes/functions.php');
     </div>
   </div>
 </section>
+
+<style>
+.job-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.job-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.job-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 20px;
+  flex: 1;
+}
+
+.job-type {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.job-type.full-time {
+  background: #d4edda;
+  color: #155724;
+}
+
+.job-type.part-time {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.job-type.contract {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.job-type.internship {
+  background: #e2e3e5;
+  color: #383d41;
+}
+
+.job-card p {
+  margin: 10px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.job-card p i {
+  width: 20px;
+  color: #667eea;
+}
+
+.job-description {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  line-height: 1.6;
+}
+
+.job-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.job-posted {
+  font-size: 12px;
+  color: #999;
+}
+
+.apply-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.apply-btn:hover {
+  transform: scale(1.05);
+}
+
+.review-card img {
+  display: none;
+}
+
+.review-card {
+  text-align: center;
+}
+
+.review-card::before {
+  content: '\f007';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 60px;
+  color: #667eea;
+  display: block;
+  margin-bottom: 15px;
+}
+</style>
