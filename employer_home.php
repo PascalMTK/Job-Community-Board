@@ -402,3 +402,15 @@
    padding: 3rem;
 }
 </style>
+
+<script>
+// Close modal when clicking outside
+window.onclick = function(event) {
+   const modal = document.getElementById('postJobModal');
+   if (event.target == modal) {
+      modal.style.display = "none";
+   }
+}
+</script>
+
+<?php include('includes/footer.php'); ?>
