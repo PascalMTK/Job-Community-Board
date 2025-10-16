@@ -61,6 +61,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_job'])) {
     }
 }
 
+// Get employer's jobs
+$jobs_query = "SELECT j.*, 
+               (SELECT COUNT(*) FROM applications WHERE job_id = j.id) as application_count,
+               (SELECT COUNT(*) FROM applications WHERE job_id = j.id AND status = 'pending') as pending_count
+               FROM jobs j 
+               WHERE j.employer_id = ? 
+               ORDER BY j.created_at DESC";
+$stmt = $conn->prepare($jobs_query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$my_jobs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+// Get statistics using regular queries
+$stats_query = "
+    SELECT 
+        COUNT(DISTINCT j.id) as total_jobs,
+        SUM(CASE WHEN j.status = 'active' THEN 1 ELSE 0 END) as active_jobs,
+        COUNT(DISTINCT a.id) as total_applications,
+        SUM(CASE WHEN a.status = 'pending' THEN 1 ELSE 0 END) as pending_applications
+    FROM jobs j
+    LEFT JOIN applications a ON j.id = a.job_id
+    WHERE j.employer_id = ?
+";
+$stmt = $conn->prepare($stats_query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stats = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+
+// Get categories for form
+$categories = $conn->query("SELECT * FROM categories ORDER BY name ASC")->fetch_all(MYSQLI_ASSOC);
+
+include('includes/header.php');
+?>
+    
 <!-- Employer Dashboard -->
 <section class="employer-dashboard">
    <div class="dashboard-header">
