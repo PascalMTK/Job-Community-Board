@@ -1,0 +1,111 @@
+/* ============================================
+   ABOUT US SECTION (DEDICATED)
+   ============================================ */
+.about-us .box-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: var(--spacing-xl);
+   align-items: center;
+   justify-content: center;
+   max-width: 1280px;
+   margin: 0 auto;
+}
+
+.about-us .image {
+   flex: 1 1 40rem;
+   animation: slideInLeft 0.8s ease-out;
+}
+
+.about-us .image img {
+   width: 100%;
+   border-radius: var(--radius-lg);
+   box-shadow: var(--box-shadow-lg);
+   transition: var(--transition);
+}
+
+.about-us .image img:hover {
+   transform: scale(1.02);
+   box-shadow: var(--box-shadow-xl);
+}
+
+.about-us .box {
+   flex: 1 1 50rem;
+   background-color: var(--card-bg);
+   border-radius: var(--radius-lg);
+   padding: 3.5rem;
+   box-shadow: var(--box-shadow);
+   animation: slideInRight 0.8s ease-out;
+   border: 1px solid var(--border-color);
+}
+
+.about-us .box h3 {
+   font-size: 3rem;
+   font-weight: 700;
+   color: var(--text-color);
+   margin-bottom: var(--spacing-md);
+   text-transform: capitalize;
+   position: relative;
+   padding-bottom: var(--spacing-sm);
+}
+
+.about-us .box h3::after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 60px;
+   height: 4px;
+   background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+   border-radius: var(--radius-sm);
+}
+
+.about-us .box p {
+   padding: var(--spacing-sm) 0;
+   line-height: 1.8;
+   color: var(--text-secondary);
+   font-size: 1.6rem;
+}
+
+.about-us .box strong {
+   color: var(--primary-color);
+   font-weight: 600;
+}
+
+.about-us .box .btn {
+   margin-top: var(--spacing-lg);
+}
+
+/* Dark mode adjustments for about-us */
+body.dark-mode .about-us .box {
+   border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+   .about-us .box-container {
+      flex-direction: column;
+   }
+
+   .about-us .image,
+   .about-us .box {
+      flex: 1 1 100%;
+   }
+
+   .about-us .box {
+      padding: 3rem;
+   }
+
+   .about-us .box h3 {
+      font-size: 2.6rem;
+   }
+}
+
+@media (max-width: 450px) {
+   .about-us .box h3 {
+      font-size: 2.4rem;
+   }
+
+   .about-us .box p {
+      font-size: 1.5rem;
+   }
+}
