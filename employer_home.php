@@ -14,6 +14,52 @@ $user_id = get_user_id();
 $success = '';
 $error = '';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_job'])) {
+    $title = sanitize_input($_POST['title']);
+    $category_id = intval($_POST['category']);
+    $company_name = sanitize_input($_POST['company_name']);
+    $description = sanitize_input($_POST['description']);
+    $requirements = sanitize_input($_POST['requirements']);
+    $responsibilities = isset($_POST['responsibilities']) ? sanitize_input($_POST['responsibilities']) : '';
+    $location = sanitize_input($_POST['location']);
+    $job_type = sanitize_input($_POST['job_type']);
+    $shift_type = sanitize_input($_POST['shift_type']);
+    
+    // Parse salary range
+    $salary_range = sanitize_input($_POST['salary_range']);
+    $salary_min = 0;
+    $salary_max = 0;
+    
+    // Try to extract numbers from salary range (e.g., "10000 - 20000" or "10000-20000")
+    if (preg_match('/(\d+)\s*-\s*(\d+)/', $salary_range, $matches)) {
+        $salary_min = floatval($matches[1]);
+        $salary_max = floatval($matches[2]);
+    } elseif (preg_match('/(\d+)/', $salary_range, $matches)) {
+        // Single number, use it as minimum
+        $salary_min = floatval($matches[1]);
+        $salary_max = 0;
+    }
+    // If "negotiable" or no numbers, leave as 0
+    
+    $experience = sanitize_input($_POST['experience']);
+    $education = isset($_POST['education']) ? sanitize_input($_POST['education']) : '';
+    $skills = isset($_POST['skills']) ? sanitize_input($_POST['skills']) : '';
+    $deadline = $_POST['deadline'];
+    
+    if (empty($title) || empty($company_name) || empty($description) || empty($location)) {
+        $error = 'Please fill in all required fields';
+    } else {
+        $stmt = $conn->prepare("INSERT INTO jobs (employer_id, category_id, title, company_name, description, requirements, responsibilities, location, job_type, shift_type, salary_min, salary_max, experience_required, education_required, skills_required, application_deadline, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active')");
+        $stmt->bind_param("iissssssssddssss", $user_id, $category_id, $title, $company_name, $description, $requirements, $responsibilities, $location, $job_type, $shift_type, $salary_min, $salary_max, $experience, $education, $skills, $deadline);
+        
+        if ($stmt->execute()) {
+            $success = 'Job posted successfully!';
+        } else {
+            $error = 'Failed to post job. Please try again.';
+        }
+        $stmt->close();
+    }
+}
 
 <!-- Employer Dashboard -->
 <section class="employer-dashboard">
