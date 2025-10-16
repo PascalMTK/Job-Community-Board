@@ -3,6 +3,18 @@ session_start();
 include('includes/connection.php');
 include('includes/functions.php');
 
+// Check if user is employer
+if (!is_employer()) {
+    redirect('login.php');
+}
+
+$user_id = get_user_id();
+
+// Handle job posting
+$success = '';
+$error = '';
+
+
 <!-- Employer Dashboard -->
 <section class="employer-dashboard">
    <div class="dashboard-header">
