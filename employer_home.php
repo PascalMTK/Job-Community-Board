@@ -176,3 +176,229 @@
       </form>
    </div>
 </div>
+
+<style>
+.employer-dashboard {
+   padding: 2rem 10%;
+}
+
+.dashboard-header {
+   text-align: center;
+   margin-bottom: 3rem;
+}
+
+.dashboard-header h1 {
+   font-size: 3.5rem;
+   color: var(--black);
+   margin-bottom: 0.5rem;
+}
+
+.stats-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+   gap: 2rem;
+   margin-bottom: 3rem;
+}
+
+.stat-box {
+   background: #fff;
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+   text-align: center;
+   animation: fadeInUp 0.5s ease forwards;
+   animation-delay: calc(var(--i) * 0.1s);
+   opacity: 0;
+}
+
+@keyframes fadeInUp {
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+.stat-box i {
+   font-size: 4rem;
+   color: var(--main-color);
+   margin-bottom: 1rem;
+}
+
+.stat-box h3 {
+   font-size: 3rem;
+   color: var(--black);
+   margin-bottom: 0.5rem;
+}
+
+.stat-box p {
+   font-size: 1.6rem;
+   color: #777;
+}
+
+.action-bar {
+   text-align: center;
+   margin-bottom: 3rem;
+}
+
+.btn-large {
+   padding: 1.5rem 3rem;
+   font-size: 1.8rem;
+}
+
+.my-jobs h2 {
+   font-size: 2.8rem;
+   color: var(--black);
+   margin-bottom: 2rem;
+}
+
+.jobs-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+   gap: 2rem;
+}
+
+.job-card {
+   background: #fff;
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+.job-card-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin-bottom: 1rem;
+}
+
+.job-card h3 {
+   font-size: 2rem;
+   color: var(--black);
+}
+
+.status-badge {
+   padding: 0.5rem 1rem;
+   border-radius: 2rem;
+   font-size: 1.2rem;
+   font-weight: bold;
+}
+
+.status-active {
+   background: #27ae60;
+   color: #fff;
+}
+
+.status-closed {
+   background: #e74c3c;
+   color: #fff;
+}
+
+.status-draft {
+   background: #95a5a6;
+   color: #fff;
+}
+
+.job-card p {
+   font-size: 1.4rem;
+   color: #777;
+   margin: 0.5rem 0;
+}
+
+.job-stats {
+   display: flex;
+   gap: 1.5rem;
+   margin: 1.5rem 0;
+   padding: 1rem 0;
+   border-top: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
+}
+
+.job-stats span {
+   font-size: 1.3rem;
+   color: #666;
+}
+
+.job-actions {
+   display: flex;
+   gap: 1rem;
+   margin-top: 1.5rem;
+}
+
+.btn-sm {
+   padding: 0.8rem 1.5rem;
+   font-size: 1.4rem;
+}
+
+.modal {
+   display: none;
+   position: fixed;
+   z-index: 1000;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0,0,0,0.5);
+   align-items: center;
+   justify-content: center;
+   overflow-y: auto;
+}
+
+.modal-content {
+   background: #fff;
+   padding: 3rem;
+   border-radius: 1rem;
+   max-width: 90rem;
+   width: 90%;
+   max-height: 90vh;
+   overflow-y: auto;
+   position: relative;
+}
+
+.close {
+   position: absolute;
+   right: 2rem;
+   top: 2rem;
+   font-size: 3rem;
+   cursor: pointer;
+   color: #777;
+}
+
+.close:hover {
+   color: var(--black);
+}
+
+.post-job-form h2 {
+   font-size: 2.5rem;
+   color: var(--black);
+   margin-bottom: 2rem;
+}
+
+.form-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+   gap: 1.5rem;
+   margin-bottom: 1.5rem;
+}
+
+.form-group {
+   margin-bottom: 1.5rem;
+}
+
+.form-group label {
+   display: block;
+   margin-bottom: 0.5rem;
+   font-size: 1.6rem;
+   color: var(--black);
+}
+
+.form-group label span {
+   color: red;
+}
+
+.empty-message {
+   text-align: center;
+   font-size: 1.8rem;
+   color: #777;
+   padding: 3rem;
+}
+</style>
