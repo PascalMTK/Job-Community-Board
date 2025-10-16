@@ -1518,93 +1518,100 @@ body.dark-mode .account-form-container {
    SETTINGS PANEL
    ============================================ */
 .settings-btn {
-   position: fixed;
-   bottom: 3rem;
-   right: 3rem;
-   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-   color: var(--white);
-   border: none;
-   border-radius: var(--radius-full);
-   width: 6rem;
-   height: 6rem;
-   cursor: pointer;
-   font-size: 2.2rem;
-   box-shadow: var(--box-shadow-lg);
-   z-index: 1000;
-   transition: var(--transition);
-   display: flex;
-   align-items: center;
-   justify-content: center;
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    cursor: pointer;
+    font-size: 2.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .settings-btn:hover {
-   transform: rotate(90deg) scale(1.1);
-   box-shadow: var(--box-shadow-xl);
+    transform: rotate(90deg) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .settings-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
 }
 
 .settings-panel {
-   position: fixed;
-   bottom: 10rem;
-   right: 3rem;
-   background: var(--card-bg);
-   color: var(--text-color);
-   border-radius: var(--radius-lg);
-   box-shadow: var(--box-shadow-xl);
-   padding: 2.5rem;
-   width: 30rem;
-   z-index: 1000;
-   transform: scale(0);
-   transform-origin: bottom right;
-   transition: var(--transition);
-   border: 2px solid var(--border-color);
+    position: fixed;
+    bottom: 10rem;
+    right: 3rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--box-shadow-xl);
+    padding: 2.5rem;
+    width: 30rem;
+    z-index: 1000;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: var(--transition);
+    border: 2px solid var(--border-color);
 }
 
 .settings-panel.active {
-   transform: scale(1);
+    transform: scale(1);
 }
 
 .settings-panel h3 {
-   font-size: 2.2rem;
-   font-weight: 700;
-   color: var(--text-color);
-   margin-bottom: var(--spacing-lg);
-   display: flex;
-   align-items: center;
-   gap: var(--spacing-sm);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .settings-panel h3 i {
-   color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .settings-panel .option {
-   margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
 .settings-panel label {
-   display: block;
-   margin-bottom: var(--spacing-sm);
-   font-weight: 600;
-   font-size: 1.5rem;
-   color: var(--text-color);
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--text-color);
 }
 
 .settings-panel select {
-   width: 100%;
-   padding: 1.2rem;
-   font-size: 1.5rem;
-   border-radius: var(--radius-md);
-   background-color: var(--input-bg);
-   color: var(--text-color);
-   border: 2px solid var(--border-color);
-   transition: var(--transition);
-   cursor: pointer;
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.5rem;
+    border-radius: var(--radius-md);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+    cursor: pointer;
 }
 
 .settings-panel select:focus {
-   border-color: var(--primary-color);
-   box-shadow: 0 4px 12px rgba(30, 136, 229, 0.2);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.2);
 }
+
 
 /* Toggle Switch Styling */
 .toggle-switch {
@@ -1945,7 +1952,7 @@ textarea.input {
 }
 
 /* ============================================
-   LANGUAGE-SPECIFIC ADJUSTMENTS
+   LANGUAGE-SPECIFIC ADJUSTMENTSz
    ============================================ */
 html[lang="af"] .heading,
 html[lang="af"] .home-container .home form h3,
