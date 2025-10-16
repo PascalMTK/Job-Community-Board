@@ -1,0 +1,22 @@
+/* CSS Variables (Light/Dark Mode) */
+:root {
+   --primary-color: #1e88e5;
+   --primary-dark: #1565c0;
+   --secondary-color: #37474f;
+   --accent-color: #e91e63;
+   --background-color: #f5f7fa;
+   --text-color: #263238;
+   --card-bg: #ffffff;
+   --border-color: rgba(0, 0, 0, 0.1);
+   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+   --radius-md: 8px;
+   --spacing-md: 1.5rem;
+   --transition: all 0.3s ease;
+}
+body.dark-mode {
+   --background-color: #0f1419;
+   --text-color: #e8eaed;
+   --card-bg: #1e2329;
+   --primary-color: #4ea1ff;
+   /* ... */
+}

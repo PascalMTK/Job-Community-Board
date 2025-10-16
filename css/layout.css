@@ -1,0 +1,21 @@
+/* Card/Box Layout */
+.box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+   gap: var(--spacing-lg);
+   justify-content: center;
+}
+.box {
+   border-radius: var(--radius-lg);
+   background-color: var(--card-bg);
+   box-shadow: var(--box-shadow);
+   padding: 3rem;
+   text-align: center;
+   transition: var(--transition);
+   animation: fadeIn 0.6s ease-out;
+}
+.box:hover {
+   transform: translateY(-8px);
+   box-shadow: var(--box-shadow-lg);
+   border-color: var(--primary-color);
+}
