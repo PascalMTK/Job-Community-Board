@@ -210,3 +210,15 @@ require_once('includes/functions.php');
   margin-bottom: 15px;
 }
 </style>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  });
+
+  document.querySelectorAll('.fade-up, .slide-in').forEach(el => observer.observe(el));
+</script>
+
+<?php include('includes/footer.php'); ?>
