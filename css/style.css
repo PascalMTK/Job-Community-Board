@@ -340,7 +340,13 @@ section {
    position: relative;
    overflow: hidden;
 }
+html:has(#mode-switcher #light:checked) {
+   color-scheme: light;
+}
 
+html:has(#mode-switcher #dark:checked) {
+   color-scheme: dark;
+}
 .btn::before {
    content: '';
    position: absolute;
