@@ -177,3 +177,282 @@ include('includes/header.php');
         <?php endif; ?>
     </div>
 </section>
+
+
+<style>
+.manage-applications-section {
+    padding: 80px 20px;
+    background: #f5f7fa;
+    min-height: 100vh;
+}
+
+.applications-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.filter-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.filter-form {
+    display: flex;
+    gap: 15px;
+}
+
+.input {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.applications-grid {
+    display: grid;
+    gap: 25px;
+}
+
+.application-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #667eea;
+}
+
+.application-card.accepted {
+    border-left-color: #10b981;
+}
+
+.application-card.rejected {
+    border-left-color: #ef4444;
+}
+
+.application-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+}
+
+.application-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.applicant-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.avatar {
+    font-size: 50px;
+    color: #667eea;
+}
+
+.applicant-info h3 {
+    margin: 0;
+    color: #333;
+    font-size: 22px;
+}
+
+.job-applied {
+    color: #666;
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-accepted {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.application-details {
+    margin-bottom: 20px;
+}
+
+.application-details p {
+    margin: 8px 0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.application-details i {
+    color: #667eea;
+    width: 20px;
+}
+
+.cover-letter {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.cover-letter h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cover-letter p {
+    color: #666;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.application-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-secondary {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.btn-download {
+    background: #667eea;
+    color: white;
+}
+
+.btn-accept {
+    background: #10b981;
+    color: white;
+}
+
+.btn-reject {
+    background: #ef4444;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 15px;
+}
+
+.empty-state i {
+    font-size: 80px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.empty-state h2 {
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.empty-state p {
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .application-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .application-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
+
+<?php include('includes/footer.php'); ?>
+
