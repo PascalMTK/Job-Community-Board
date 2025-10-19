@@ -168,3 +168,193 @@ include('includes/header.php');
       </div>
    </div>
 </section>
+
+<style>
+.job-details {
+   padding: 2rem 10%;
+   max-width: 1400px;
+   margin: 0 auto;
+}
+
+.job-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   padding: 2rem;
+   background: #fff;
+   border-radius: 1rem;
+   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+   margin-bottom: 2rem;
+}
+
+.company-info {
+   display: flex;
+   gap: 2rem;
+}
+
+.company-info img {
+   width: 10rem;
+   height: 10rem;
+   object-fit: contain;
+   border-radius: 0.5rem;
+}
+
+.company-info h1 {
+   font-size: 2.8rem;
+   color: var(--black);
+   margin-bottom: 0.5rem;
+}
+
+.company-info h3 {
+   font-size: 2rem;
+   color: #666;
+   margin-bottom: 1rem;
+}
+
+.company-info p {
+   font-size: 1.4rem;
+   color: #777;
+   margin: 0.3rem 0;
+}
+
+.job-actions {
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+}
+
+.job-content {
+   display: grid;
+   grid-template-columns: 1fr 35rem;
+   gap: 2rem;
+}
+
+.main-content {
+   background: #fff;
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+.section {
+   margin-bottom: 3rem;
+}
+
+.section h2 {
+   font-size: 2.2rem;
+   color: var(--black);
+   margin-bottom: 1.5rem;
+   border-bottom: 2px solid var(--main-color);
+   padding-bottom: 0.5rem;
+}
+
+.tags {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+   gap: 1rem;
+}
+
+.tags p {
+   font-size: 1.5rem;
+   color: #555;
+   padding: 1rem;
+   background: #f5f5f5;
+   border-radius: 0.5rem;
+}
+
+.description-text {
+   font-size: 1.6rem;
+   line-height: 1.8;
+   color: #555;
+}
+
+.skills {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1rem;
+}
+
+.skill-tag {
+   display: inline-block;
+   padding: 0.8rem 1.5rem;
+   background: var(--main-color);
+   color: #fff;
+   border-radius: 2rem;
+   font-size: 1.4rem;
+}
+
+.apply-section {
+   text-align: center;
+   margin-top: 3rem;
+   padding-top: 2rem;
+   border-top: 1px solid #ddd;
+}
+
+.btn-large {
+   padding: 1.5rem 4rem;
+   font-size: 1.8rem;
+}
+
+.sidebar > div {
+   background: #fff;
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+   margin-bottom: 2rem;
+}
+
+.sidebar h3 {
+   font-size: 2rem;
+   color: var(--black);
+   margin-bottom: 1.5rem;
+}
+
+.sidebar h4 {
+   font-size: 1.8rem;
+   color: #666;
+   margin-bottom: 1rem;
+}
+
+.sidebar p {
+   font-size: 1.4rem;
+   color: #777;
+   margin: 0.5rem 0;
+}
+
+.share-buttons {
+   display: flex;
+   gap: 1rem;
+}
+
+.share-btn {
+   width: 4rem;
+   height: 4rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: var(--main-color);
+   color: #fff;
+   border-radius: 0.5rem;
+   font-size: 1.8rem;
+   transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+   transform: translateY(-3px);
+   opacity: 0.9;
+}
+
+@media (max-width: 991px) {
+   .job-header {
+      flex-direction: column;
+      gap: 2rem;
+   }
+   
+   .job-content {
+      grid-template-columns: 1fr;
+   }
+}
+</style>
+
+<?php include('includes/footer.php'); ?>
+
