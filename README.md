@@ -171,11 +171,12 @@ An Iterative Development Methodology was used, enabling:
 
 ## 10. Target Users & Benefits
 
-| User Group         | Main Benefit                                     |
-| ------------------ | ------------------------------------------------ |
-| Students/Graduates | Access to relevant entry-level job opportunities |
-| Local Employers    | Cost-effective recruitment of emerging talent    |
-| Educational Bodies | Enhanced support for graduate employability      |
+The platform serves three main user groups:
+
+* Students and graduates who are looking for entry-level roles and internships.
+* Local employers who want a simple and cost-effective way to recruit emerging talent.
+* Educational institutions that aim to support students in transitioning into the job market.
+  Enhanced support for graduate employability       |
 
 ## 11. Project Outcomes
 
