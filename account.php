@@ -9,13 +9,11 @@ if (!is_logged_in()) {
 
 $user_id = get_user_id();
 
-// Fetch user details
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 
-//Fetch statistics based on role
 if (is_student()) {
     $stats_query = "
         SELECT 
@@ -31,13 +29,14 @@ if (is_student()) {
     $stmt->execute();
     $stats = $stmt->get_result()->fetch_assoc();
     
-    //Fetch saved jobs count
+    //fetching the saved jobs count
     $saved_query = "SELECT COUNT(*) as saved_count FROM saved_jobs WHERE id = ?";
     $stmt = $conn->prepare($saved_query);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $saved_result = $stmt->get_result()->fetch_assoc();
 } else {
+    //eemployer statistics
     $stats_query = "
         SELECT 
             COUNT(DISTINCT j.id) as total_jobs,
@@ -57,11 +56,9 @@ if (is_student()) {
 include('includes/header.php');
 ?>
 
-
 <section class="account-section">
     <div class="account-container">
         
-        //profile header
         <div class="profile-header">
             <div class="profile-avatar">
                 <i class="fas fa-user-circle"></i>
@@ -83,7 +80,6 @@ include('includes/header.php');
             </a>
         </div>
 
-        //account statistics
         <div class="account-stats">
             <h2 class="section-title">
                 <i class="fas fa-chart-line"></i>
@@ -186,7 +182,6 @@ include('includes/header.php');
             </div>
         </div>
 
-        //account detatils
         <div class="account-details">
             <h2 class="section-title">
                 <i class="fas fa-user"></i>
@@ -216,7 +211,6 @@ include('includes/header.php');
             </div>
         </div>
 
-        //quick actions
         <div class="quick-actions">
             <h2 class="section-title">
                 <i class="fas fa-bolt"></i>
@@ -265,7 +259,6 @@ include('includes/header.php');
     </div>
 </section>
 
-
 <style>
 .account-section {
     padding: 80px 20px;
@@ -278,7 +271,6 @@ include('includes/header.php');
     margin: 0 auto;
 }
 
-/* Profile Header */
 .profile-header {
     background: white;
     border-radius: 15px;
@@ -341,7 +333,6 @@ include('includes/header.php');
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-/* Account Statistics */
 .account-stats, .account-details, .quick-actions {
     background: white;
     border-radius: 15px;
@@ -363,7 +354,6 @@ include('includes/header.php');
     color: #667eea;
 }
 
-/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -420,7 +410,6 @@ include('includes/header.php');
     font-size: 14px;
 }
 
-/* Details Grid */
 .details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -449,7 +438,6 @@ include('includes/header.php');
     font-size: 16px;
 }
 
-/* Actions Grid */
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -479,7 +467,6 @@ include('includes/header.php');
     box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .profile-header {
         flex-direction: column;
@@ -499,5 +486,3 @@ include('includes/header.php');
 </style>
 
 <?php include('includes/footer.php'); ?>
-
-

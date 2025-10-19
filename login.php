@@ -3,7 +3,6 @@ session_start();
 include('includes/connection.php');
 include('includes/functions.php');
 
-// Redirect if already logged in
 if (is_logged_in()) {
     if (is_employer()) {
         redirect('employer_home.php');
@@ -14,7 +13,6 @@ if (is_logged_in()) {
 
 $error = '';
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $email = sanitize_input($_POST['email']);
     $password = $_POST['pass'];
@@ -22,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     if (empty($email) || empty($password)) {
         $error = 'Please fill in all fields';
     } else {
-        // Check user credentials
         $stmt = $conn->prepare("SELECT id, name, email, password, role FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -31,15 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         if ($result->num_rows == 1) {
             $user = $result->fetch_assoc();
             
-            // Verify password
             if (password_verify($password, $user['password'])) {
-                // Set session variables
+                //setting session variables
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['role'] = $user['role'];
                 
-                // Redirect based on role
                 if ($user['role'] == 'employer') {
                     redirect('employer_home.php');
                 } else {
@@ -58,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 include('includes/header.php');
 ?>
 
-<!-- account section starts  -->
 
 <div class="account-form-container">
 
@@ -87,8 +81,6 @@ include('includes/header.php');
    </section>
 
 </div>
-
-<!-- account section ends -->
 
 
 <?php include('includes/footer.php'); ?>

@@ -1,3 +1,5 @@
+<?php
+
 function sanitize_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -123,4 +125,3 @@ function upload_file($file, $destination_folder = 'uploads/') {
     
     return false;
 }
-?>

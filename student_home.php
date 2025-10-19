@@ -3,20 +3,17 @@ session_start();
 require_once('includes/connection.php');
 require_once('includes/functions.php');
 
-// Redirect if not logged in or not a student
 if (!is_logged_in() || !is_student()) {
     redirect('login.php');
 }
 
 $user_id = get_user_id();
 
-// Fetch user details
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 
-// Fetch recommended jobs (latest 6 jobs)
 $jobs_query = "
     SELECT j.*, u.name as employer_name, u.email as employer_email, c.name as category_name
     FROM jobs j

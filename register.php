@@ -3,7 +3,6 @@ session_start();
 include('includes/connection.php');
 include('includes/functions.php');
 
-// Redirect if already logged in
 if (is_logged_in()) {
     if (is_employer()) {
         redirect('employer_home.php');
@@ -15,7 +14,6 @@ if (is_logged_in()) {
 $error = '';
 $success = '';
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $name = sanitize_input($_POST['name']);
     $email = sanitize_input($_POST['email']);
@@ -23,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $confirm_password = $_POST['c_pass'];
     $role = isset($_POST['role']) ? sanitize_input($_POST['role']) : 'student';
     
-    // Validation
     if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = 'Please fill in all fields';
     } elseif ($password !== $confirm_password) {
@@ -33,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'Invalid email format';
     } else {
-        // Check if email already exists
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -42,10 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         if ($result->num_rows > 0) {
             $error = 'Email already registered';
         } else {
-            // Hash password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            // Insert new user
             $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $name, $email, $hashed_password, $role);
             

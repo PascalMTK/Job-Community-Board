@@ -1,4 +1,3 @@
-<!-- footer section starts -->
 <footer class="footer">
    <section class="grid">
       <div class="box" style="--i: 1;">
@@ -29,12 +28,15 @@
    </section>
    <div class="credit" data-en="&copy; copyright @ 2025 by Group 83 | all rights reserved!" data-af="&copy; kopiereg @ 2025 deur Groep 83 | alle regte voorbehou!">&copy; copyright @ 2025 by <span>Group 83</span> | all rights reserved!</div>
 </footer>
-<!-- footer section ends -->
 
-<!-- settings panel -->
 <button class="settings-btn fas fa-cog" data-en="Settings" data-af="Instellings"></button>
 <div class="settings-panel">
-   <h3 data-en="Settings" data-af="Instellings">Settings</h3>
+   <div class="panel-header">
+      <!-- <h3 data-en="Settings" data-af="Instellings"></h3 -->>
+      <button id="closeSettingsBtn" class="close-btn">
+         <i class="fas fa-times"></i>
+      </button>
+   </div>
    <div class="option">
       <label for="dark-mode" data-en="Dark Mode" data-af="Donker Modus">Dark Mode</label>
       <input type="checkbox" id="dark-mode">
@@ -48,7 +50,6 @@
    </div>
 </div>
 
-<!-- custom js file link -->
 <script src="js/script.js"></script>
 </body>
 </html>

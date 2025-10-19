@@ -1,12 +1,8 @@
-/* ============================================
-   IMPORTS & FONTS
-   ============================================ */
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ============================================
-   KEYFRAME ANIMATIONS
-   ============================================ */
+
 @keyframes fadeIn {
    from {
       opacity: 0;
@@ -110,11 +106,7 @@
    }
 }
 
-/* ============================================
-   CSS VARIABLES (LIGHT MODE)
-   ============================================ */
 :root {
-   /* Primary Colors */
    --primary-color: #1e88e5;
    --primary-dark: #1565c0;
    --primary-light: #42a5f5;
@@ -122,46 +114,32 @@
    --secondary-dark: #263238;
    --accent-color: #e91e63;
    --accent-dark: #c2185b;
-   
-   /* Background Colors */
    --background-color: #f5f7fa;
    --background-alt: #e8eef3;
    --white: #ffffff;
    --card-bg: #ffffff;
    --input-bg: #f9fafb;
-   
-   /* Text Colors */
    --text-color: #263238;
    --text-secondary: #546e7a;
    --text-light: #78909c;
    --text-muted: #b0bec5;
-   
-   /* UI Elements */
    --border-color: rgba(0, 0, 0, 0.1);
    --border-light: rgba(0, 0, 0, 0.05);
    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
    --box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
    --box-shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.16);
-   
-   /* Status Colors */
    --success-color: #4caf50;
    --warning-color: #ff9800;
    --error-color: #f44336;
    --info-color: #2196f3;
-   
-   /* Transitions */
    --transition-fast: all 0.2s ease;
    --transition: all 0.3s ease;
    --transition-slow: all 0.5s ease;
-   
-   /* Spacing */
    --spacing-xs: 0.5rem;
    --spacing-sm: 1rem;
    --spacing-md: 1.5rem;
    --spacing-lg: 2rem;
    --spacing-xl: 3rem;
-   
-   /* Border Radius */
    --radius-sm: 6px;
    --radius-md: 8px;
    --radius-lg: 12px;
@@ -169,9 +147,6 @@
    --radius-full: 50%;
 }
 
-/* ============================================
-   DARK MODE VARIABLES
-   ============================================ */
 body.dark-mode {
    --background-color: #0f1419;
    --background-alt: #1a1f26;
@@ -195,9 +170,6 @@ body.dark-mode {
    --primary-light: #82b1ff;
 }
 
-/* ============================================
-   BASE STYLES
-   ============================================ */
 * {
    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
    margin: 0;
@@ -229,9 +201,6 @@ body {
    min-height: 100vh;
 }
 
-/* ============================================
-   SCROLLBAR STYLES
-   ============================================ */
 ::-webkit-scrollbar {
    width: 10px;
    height: 10px;
@@ -251,9 +220,6 @@ body {
    background: linear-gradient(180deg, var(--primary-dark), var(--primary-color));
 }
 
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
 .container {
    max-width: 1280px;
    margin: 0 auto;
@@ -319,9 +285,6 @@ section {
    animation: shimmer 3s infinite;
 }
 
-/* ============================================
-   BUTTON STYLES
-   ============================================ */
 .btn {
    display: inline-block;
    margin-top: var(--spacing-md);
@@ -383,9 +346,6 @@ section {
    flex-wrap: wrap;
 }
 
-/* ============================================
-   HEADER STYLES
-   ============================================ */
 .header {
    position: sticky;
    top: 0;
@@ -480,9 +440,6 @@ body.dark-mode .header {
    background-color: rgba(30, 136, 229, 0.1);
 }
 
-/* ============================================
-   HOME SECTION
-   ============================================ */
 .home-container {
    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -569,9 +526,6 @@ body.dark-mode .home-container {
    color: var(--text-light);
 }
 
-/* ============================================
-   CATEGORY SECTION
-   ============================================ */
 .category .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
@@ -642,9 +596,6 @@ body.dark-mode .home-container {
    animation: heartBeat 0.8s ease;
 }
 
-/* ============================================
-   JOBS SECTION
-   ============================================ */
 .jobs-container .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
@@ -796,9 +747,6 @@ body.dark-mode .home-container {
    animation: heartBeat 0.5s ease;
 }
 
-/* ============================================
-   ABOUT SECTION
-   ============================================ */
 .about img {
    width: 100%;
    border-radius: var(--radius-lg);
@@ -835,9 +783,6 @@ body.dark-mode .home-container {
    font-weight: 600;
 }
 
-/* ============================================
-   REVIEWS SECTION
-   ============================================ */
 .reviews .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
@@ -914,9 +859,6 @@ body.dark-mode .home-container {
    font-size: 1.4rem;
 }
 
-/* ============================================
-   JOB FILTER SECTION
-   ============================================ */
 .job-filter form {
    background-color: var(--card-bg);
    border-radius: var(--radius-lg);
@@ -1034,9 +976,6 @@ body.dark-mode .home-container {
    transform: scaleY(1);
 }
 
-/* ============================================
-   JOB DETAILS PAGE
-   ============================================ */
 .job-details .details {
    background-color: var(--card-bg);
    border-radius: var(--radius-lg);
@@ -1154,9 +1093,6 @@ body.dark-mode .home-container {
    color: var(--white);
 }
 
-/* ============================================
-   COMPANY DETAILS PAGE
-   ============================================ */
 .view-company .details {
    background-color: var(--card-bg);
    border-radius: var(--radius-lg);
@@ -1236,9 +1172,6 @@ body.dark-mode .home-container {
    list-style: disc;
 }
 
-/* ============================================
-   CONTACT SECTION
-   ============================================ */
 .contact .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
@@ -1356,9 +1289,6 @@ body.dark-mode .home-container {
    resize: vertical;
 }
 
-/* ============================================
-   ACCOUNT FORMS
-   ============================================ */
 .account-form-container {
    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1434,9 +1364,6 @@ body.dark-mode .account-form-container {
    text-decoration: underline;
 }
 
-/* ============================================
-   FOOTER STYLES
-   ============================================ */
 .footer {
    background-color: var(--card-bg);
    margin-top: var(--spacing-xl);
@@ -1513,10 +1440,6 @@ body.dark-mode .account-form-container {
    color: var(--primary-color);
    font-weight: 700;
 }
-
-/* ============================================
-   SETTINGS PANEL
-   ============================================ */
 .settings-btn {
    position: fixed;
    bottom: 3rem;
@@ -1563,14 +1486,37 @@ body.dark-mode .account-form-container {
    transform: scale(1);
 }
 
+.panel-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: var(--spacing-lg);
+}
+
 .settings-panel h3 {
    font-size: 2.2rem;
    font-weight: 700;
    color: var(--text-color);
-   margin-bottom: var(--spacing-lg);
+   margin: 0;
    display: flex;
    align-items: center;
    gap: var(--spacing-sm);
+}
+
+.close-btn {
+   background: transparent;
+   border: none;
+   color: var(--text-secondary);
+   font-size: 1.8rem;
+   cursor: pointer;
+   padding: 0.5rem;
+   border-radius: var(--radius-sm);
+   transition: var(--transition);
+}
+
+.close-btn:hover {
+   color: var(--error-color);
+   background: rgba(244, 67, 54, 0.1);
 }
 
 .settings-panel h3 i {
@@ -1606,7 +1552,26 @@ body.dark-mode .account-form-container {
    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.2);
 }
 
-/* Toggle Switch Styling */
+/* Custom Checkbox Styling */
+.settings-panel input[type="checkbox"] {
+   width: 2rem;
+   height: 2rem;
+   accent-color: var(--primary-color);
+   cursor: pointer;
+}
+
+.settings-panel .option {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: var(--spacing-lg);
+}
+
+.settings-panel .option label {
+   margin-bottom: 0;
+   flex: 1;
+}
+
 .toggle-switch {
    display: flex;
    align-items: center;
@@ -1662,9 +1627,7 @@ input:checked + .slider:before {
    box-shadow: 0 0 8px rgba(30, 136, 229, 0.4);
 }
 
-/* ============================================
-   APPLICATION MODAL
-   ============================================ */
+
 .application-modal {
    display: none;
    position: fixed;
@@ -1817,9 +1780,7 @@ textarea.input {
    font-family: inherit;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
+
 @media (max-width: 991px) {
    html {
       font-size: 58%;
@@ -1944,9 +1905,6 @@ textarea.input {
    }
 }
 
-/* ============================================
-   LANGUAGE-SPECIFIC ADJUSTMENTS
-   ============================================ */
 html[lang="af"] .heading,
 html[lang="af"] .home-container .home form h3,
 html[lang="af"] .category .box-container .box h3,
@@ -1955,9 +1913,7 @@ html[lang="af"] .footer .grid .box h3 {
    font-size: 95%;
 }
 
-/* ============================================
-   PRINT STYLES
-   ============================================ */
+
 @media print {
    .header,
    .settings-btn,

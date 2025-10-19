@@ -9,7 +9,6 @@ if (!is_logged_in() || !is_student()) {
 
 $user_id = get_user_id();
 
-// Get student's applications with job details
 $applications_query = "
     SELECT a.*, j.title, j.company_name, j.location, j.job_type, 
            u.name as employer_name, u.email as employer_email
@@ -34,6 +33,7 @@ $rejected = count(array_filter($applications, fn($a) => $a['status'] == 'rejecte
 include('includes/header.php');
 ?>
 
+<!-- Dashboard Section -->
 <section class="dashboard" id="dashboard">
    <h1 class="heading">Your Dashboard</h1>
    
@@ -72,7 +72,6 @@ include('includes/header.php');
          <h2 class="heading" style="margin: 0;">Your Job Applications</h2>
       </div>
 
-      <!-- Applications List -->
       <div class="box-container" id="applicationsList">
          <?php if (count($applications) > 0): ?>
             <?php foreach ($applications as $app): ?>
@@ -368,7 +367,6 @@ include('includes/header.php');
    </div>
 </div>
 
-<!-- Success Notification -->
 <div class="notification" id="notification">
    <i class="fas fa-check-circle"></i>
    <span id="notificationText">Success!</span>
@@ -376,3 +374,4 @@ include('includes/header.php');
 
 <script src="js/script.js"></script>
 <script src="js/dashboard.js"></script>
+

@@ -37,7 +37,6 @@ $latest_jobs = $conn->query($jobs_query)->fetch_all(MYSQLI_ASSOC);
 include('includes/header.php');
 ?>
 
-<!-- home section starts -->
 <div class="home-container">
    <section class="home">
       <form action="" method="post">
@@ -51,9 +50,7 @@ include('includes/header.php');
       </form>
    </section>
 </div>
-<!-- home section ends -->
 
-<!-- category section starts -->
 <section class="category">
    <h1 class="heading" data-en="job categories" data-af="werkskategorieë">job categories</h1>
    <div class="box-container">
@@ -71,9 +68,7 @@ include('includes/header.php');
       <?php endforeach; ?>
    </div>
 </section>
-<!-- category section ends -->
 
-<!-- jobs section starts -->
 <section class="jobs-container">
    <h1 class="heading" data-en="latest jobs" data-af="nuutste werke">latest jobs</h1>
    <div class="box-container">
@@ -113,6 +108,5 @@ include('includes/header.php');
       <a href="all_jobs.php" class="btn" data-en="view all" data-af="bekyk alles">view all</a>
    </div>
 </section>
-<!-- jobs section ends -->
 
 <?php include('includes/footer.php')?>

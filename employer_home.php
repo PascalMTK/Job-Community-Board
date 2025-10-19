@@ -3,14 +3,12 @@ session_start();
 include('includes/connection.php');
 include('includes/functions.php');
 
-// Check if user is employer
 if (!is_employer()) {
     redirect('login.php');
 }
 
 $user_id = get_user_id();
 
-// Handle job posting
 $success = '';
 $error = '';
 
@@ -25,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_job'])) {
     $job_type = sanitize_input($_POST['job_type']);
     $shift_type = sanitize_input($_POST['shift_type']);
     
-    // Parse salary range
     $salary_range = sanitize_input($_POST['salary_range']);
     $salary_min = 0;
     $salary_max = 0;
@@ -503,7 +500,6 @@ include('includes/header.php');
 </style>
 
 <script>
-// Close modal when clicking outside
 window.onclick = function(event) {
    const modal = document.getElementById('postJobModal');
    if (event.target == modal) {

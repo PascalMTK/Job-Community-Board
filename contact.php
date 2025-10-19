@@ -8,7 +8,6 @@ $success = '';
 $error = '';
 
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send'])) {
     $name = sanitize_input($_POST['name']);
     $email = sanitize_input($_POST['email']);
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send'])) {
 <?php session_start(); ?>
 
 <main role="main">
-   <!-- contact us section starts  -->
    <section aria-labelledby="contact-title">
       <h1 id="contact-title" class="section-title">contact us</h1>
 
@@ -101,6 +99,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send'])) {
          </form>
       </section>
    </section>
-   <!-- contact us section ends -->
 </main>
 
