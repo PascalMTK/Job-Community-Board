@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile - Community Job Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Community Job Board - Student Portal</h1>
+    <nav>
+  <a href="student_dashboard.html" class="active">Dashboard</a>
+  <a href="browse_jobs.html">Browse Jobs</a>
+  <a href="student_profile.html">Profile</a>
+  <a href="view_applications.html">Applications</a>
+  <a href="index.html">Logout</a>
+</nav>
+  </header>
+
+  <main class="student-profile">
+    <h1>Student Profile</h1>
+    
+    <form id="profileForm" class="profile-form">
+      
+      <div class="form-section">
+        <h3>Personal Information</h3>
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="full_name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+      </div>
+
+    
+      <div class="form-section">
+        <h3>Education</h3>
+        <div class="form-group">
+          <label for="school">University/College</label>
+          <input type="text" id="school" name="school">
+        </div>
+        <div class="form-group">
+          <label for="major">Major</label>
+          <input type="text" id="major" name="major">
+        </div>
+        <div class="form-group">
+          <label for="graduation">Expected Graduation</label>
+          <input type="month" id="graduation" name="graduation">
+        </div>
+      </div>
+
+      
+      <div class="form-section">
+        <h3>Skills</h3>
+        <div class="skills-container">
+          <input type="text" id="skillInput" placeholder="Add skills (press Enter)">
+          <div id="skillsList" class="skills-tags"></div>
+        </div>
+      </div>
+
+    
+      <div class="form-section">
+        <h3>Resume</h3>
+        <div class="upload-area">
+          <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx">
+          <label for="resumeUpload">Upload Resume</label>
+          <span id="resumeName">No file chosen</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">Save Profile</button>
+    </form>
+  </main>
+
+  <script>
+    
+    const skillInput = document.getElementById('skillInput');
+    const skillsList = document.getElementById('skillsList');
+    let skills = [];
+    
+    // Load skills from localStorage if available
+    if (localStorage.getItem('studentSkills')) {
+      skills = JSON.parse(localStorage.getItem('studentSkills'));
+      renderSkills();
+    }
+    
+    skillInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const skill = skillInput.value.trim();
+        if (skill && !skills.includes(skill)) {
+          skills.push(skill);
+          renderSkills();
+          saveSkills();
+          skillInput.value = '';
+        }
+      }
+    });
+    
+    function renderSkills() {
+      skillsList.innerHTML = '';
+      skills.forEach(skill => {
+        const skillTag = document.createElement('div');
+        skillTag.className = 'skill-tag';
+        skillTag.innerHTML = `
+          ${skill}
+          <button type="button" class="remove-skill" data-skill="${skill}">&times;</button>
+        `;
+        skillsList.appendChild(skillTag);
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll('.remove-skill').forEach(button => {
+        button.addEventListener('click', function() {
+          const skillToRemove = this.getAttribute('data-skill');
+          skills = skills.filter(skill => skill !== skillToRemove);
+          renderSkills();
+          saveSkills();
+        });
+      });
+    }
+    
+    function saveSkills() {
+      localStorage.setItem('studentSkills', JSON.stringify(skills));
+    }
+    
+    // Resume upload functionality
+    const resumeUpload = document.getElementById('resumeUpload');
+    const resumeName = document.getElementById('resumeName');
+    
+    resumeUpload.addEventListener('change', () => {
+      if (resumeUpload.files.length > 0) {
+        resumeName.textContent = resumeUpload.files[0].name;
+        resumeName.style.color = '#2d3748';
+        resumeName.style.fontWeight = '500';
+      } else {
+        resumeName.textContent = 'No file chosen';
+        resumeName.style.color = '#718096';
+        resumeName.style.fontWeight = 'normal';
+      }
+    });
+    
+    
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Profile saved successfully!');
+      
+    });
+    
+    
+    if (localStorage.getItem('studentProfile')) {
+      const profileData = JSON.parse(localStorage.getItem('studentProfile'));
+      document.getElementById('fullName').value = profileData.fullName || '';
+      document.getElementById('email').value = profileData.email || '';
+      document.getElementById('phone').value = profileData.phone || '';
+      document.getElementById('school').value = profileData.school || '';
+      document.getElementById('major').value = profileData.major || '';
+      document.getElementById('graduation').value = profileData.graduation || '';
+    }
+    
+    
+    const formInputs = document.querySelectorAll('#profileForm input');
+    formInputs.forEach(input => {
+      input.addEventListener('input', saveProfileData);
+    });
+    
+    function saveProfileData() {
+      const profileData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        school: document.getElementById('school').value,
+        major: document.getElementById('major').value,
+        graduation: document.getElementById('graduation').value
+      };
+      localStorage.setItem('studentProfile', JSON.stringify(profileData));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Community Job Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Community Job Board - Student Portal</h1>
+    <nav>
+      <a href="student_dashboard.html" class="active">Dashboard</a>
+      <a href="browse_jobs.html">Browse Jobs</a>
+      <a href="student_profile.html">Profile</a>
+      <a href="view_applications.html">Applications</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <h1>Welcome back, [Student Name]!</h1>
+    
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <h3>Applications Sent</h3>
+        <p class="stat-number">5</p>
+      </div>
+      <div class="stat-card">
+        <h3>Pending Reviews</h3>
+        <p class="stat-number">3</p>
+      </div>
+      <div class="stat-card">
+        <h3>New Jobs</h3>
+        <p class="stat-number">12</p>
+      </div>
+    </div>
+
+    <div class="dashboard-sections">
+      <section class="recent-jobs">
+        <h2>Recent Job Postings</h2>
+        <div id="recentJobsList">
+     </div>
+        <a href="browse_jobs.html" class="btn-primary">View All Jobs</a>
+      </section>
+    <section class="application-status">
+        <h2>Recent Applications</h2>
+        <div id="recentApplications">
+          
+        </div>
+        <a href="view_applications.html" class="btn-primary">View All Applications</a>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    
+    const recentJobs = [
+      { title: "Web Developer Intern", company: "Tech Solutions", posted: "2 hours ago" },
+      { title: "Marketing Assistant", company: "Creative Agency", posted: "5 hours ago" },
+      { title: "Data Entry Clerk", company: "Office Pro", posted: "1 day ago" }
+    ];
+
+    const recentApplications = [
+      { job: "Frontend Developer", company: "TechWorld", status: "pending", date: "2023-10-16" },
+      { job: "Sales Assistant", company: "Retail Plus", status: "reviewed", date: "2023-10-14" }
+    ];
+
+    // Populate recent jobs
+    const recentJobsList = document.getElementById('recentJobsList');
+    recentJobs.forEach(job => {
+      const jobElement = document.createElement('div');
+      jobElement.className = 'job-card';
+      jobElement.innerHTML = `
+        <h4>${job.title}</h4>
+        <p>${job.company} • ${job.posted}</p>
+        <button class="btn-primary" onclick="applyForJob('${job.title}')">Apply Now</button>
+      `;
+      recentJobsList.appendChild(jobElement);
+    });
+
+    // Populate recent applications
+    const recentApplicationsList = document.getElementById('recentApplications');
+    recentApplications.forEach(app => {
+      const appElement = document.createElement('div');
+      appElement.className = 'application-card';
+      appElement.innerHTML = `
+        <h4>${app.job}</h4>
+        <p>${app.company} • Applied: ${new Date(app.date).toLocaleDateString()}</p>
+        <span class="status-badge status-${app.status}">${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span>
+      `;
+      recentApplicationsList.appendChild(appElement);
+    });
+
+    function applyForJob(jobTitle) {
+      alert(`Applying for: ${jobTitle}`);
+      
+    }
+  </script>
+</body>
+</html>

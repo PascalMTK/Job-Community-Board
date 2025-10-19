@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Jobs - Community Job Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Community Job Board - Student Portal</h1>
+    <nav>
+  <a href="student_dashboard.html" class="active">Dashboard</a>
+  <a href="browse_jobs.html">Browse Jobs</a>
+  <a href="student_profile.html">Profile</a>
+  <a href="view_applications.html">Applications</a>
+  <a href="index.html">Logout</a>
+</nav>
+  </header>
+
+  <main>
+    <section class="search-section">
+      <input type="text" id="searchInput" placeholder="Search by job title, company, or location...">
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="IT">IT</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Finance">Finance</option>
+        <option value="Retail">Retail</option>
+        <option value="Hospitality">Hospitality</option>
+        <option value="Education">Education</option>
+      </select>
+    </section>
+
+    <section id="jobList" class="job-listings">
+    </section>
+  </main>
+
+  <script>
+    const jobs = [
+      { 
+        id: 1,
+        title: "Frontend Developer Intern", 
+        category: "IT", 
+        company: "TechWorld", 
+        location: "Windhoek",
+        description: "We are looking for a motivated Frontend Developer Intern to join our team. You will work with modern frameworks like React and Vue.",
+        salary: "N$ 8,000 - N$ 10,000",
+        type: "Internship",
+        posted: "2025-10-15"
+      },
+      { 
+        id: 2,
+        title: "Marketing Assistant", 
+        category: "Marketing", 
+        company: "AdLab", 
+        location: "Swakopmund",
+        description: "Join our marketing team to help develop and implement marketing strategies for various clients.",
+        salary: "N$ 10,000 - N$ 12,000",
+        type: "Full-time",
+        posted: "2025-10-12"
+      },
+      { 
+        id: 3,
+        title: "Sales Promoter", 
+        category: "Retail", 
+        company: "ShopEase", 
+        location: "Katutura",
+        description: "Promote products and engage with customers in our retail stores. No experience required.",
+        salary: "N$ 6,000 - N$ 7,500",
+        type: "Part-time",
+        posted: "2025-10-10"
+      },
+      { 
+        id: 4,
+        title: "Finance Intern", 
+        category: "Finance", 
+        company: "Capital Investments", 
+        location: "Windhoek",
+        description: "Assist our finance team with day-to-day accounting tasks and financial reporting.",
+        salary: "N$ 9,000 - N$ 11,000",
+        type: "Internship",
+        posted: "2025-10-08"
+      }
+    ];
+
+    const jobList = document.getElementById('jobList');
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+
+    function displayJobs(list) {
+      jobList.innerHTML = '';
+      
+      if (list.length === 0) {
+        jobList.innerHTML = `
+          <div class="no-jobs">
+            <p>No jobs found matching your criteria.</p>
+            <button class="btn-primary" onclick="clearFilters()">Clear Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.className = 'job-card';
+        jobCard.innerHTML = `
+          <h3>${job.title}</h3>
+          <p><strong>${job.company}</strong> — ${job.location}</p>
+          <p>${job.description}</p>
+          <div style="display: flex; justify-content: space-between; margin-top: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <span style="background: #e2e8f0; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem;">${job.category}</span>
+              <span style="background: #edf2f7; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; margin-left: 0.5rem;">${job.type}</span>
+            </div>
+            <span style="color: #2d3748; font-weight: 500;">${job.salary}</span>
+          </div>
+          <button class="btn-primary" style="margin-top: 1rem;" onclick="applyForJob(${job.id})">Apply Now</button>
+        `;
+        jobList.appendChild(jobCard);
+      });
+    }
+
+    function filterJobs() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const category = categoryFilter.value;
+
+      const filtered = jobs.filter(job =>
+        (job.title.toLowerCase().includes(searchTerm) ||
+         job.company.toLowerCase().includes(searchTerm) ||
+         job.location.toLowerCase().includes(searchTerm)) &&
+        (category === '' || job.category === category)
+      );
+      displayJobs(filtered);
+    }
+
+    function clearFilters() {
+      searchInput.value = '';
+      categoryFilter.value = '';
+      displayJobs(jobs);
+    }
+
+    function applyForJob(jobId) {
+      const job = jobs.find(j => j.id === jobId);
+      if (job) {
+        alert(`Applying for: ${job.title} at ${job.company}`);
+      }
+    }
+
+    searchInput.addEventListener('input', filterJobs);
+    categoryFilter.addEventListener('change', filterJobs);
+
+    // Initialize the page with all jobs
+    displayJobs(jobs);
+  </script>
+</body>
+</html>
+

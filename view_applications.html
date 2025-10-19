@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Applications - Community Job Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Community Job Board - Student Portal</h1>
+    <nav>
+  <a href="student_dashboard.html" class="active">Dashboard</a>
+  <a href="browse_jobs.html">Browse Jobs</a>
+  <a href="student_profile.html">Profile</a>
+  <a href="view_applications.html">Applications</a>
+  <a href="index.html">Logout</a>
+</nav>
+  </header>
+
+  <main class="view-applications">
+    <h1>Your Applications</h1>
+
+    <div class="status-filters">
+      <button class="filter-btn active" data-status="all">All Applications</button>
+      <button class="filter-btn" data-status="pending">Pending</button>
+      <button class="filter-btn" data-status="reviewed">Under Review</button>
+      <button class="filter-btn" data-status="accepted">Accepted</button>
+      <button class="filter-btn" data-status="rejected">Rejected</button>
+    </div>
+
+    <div class="applications-list">
+      <div id="applicationsContainer"></div>
+      <div id="noApplications" class="no-applications" style="display: none;">
+        <p>You haven't applied to any jobs yet.</p>
+        <a href="browse_jobs.html" class="btn-primary">Browse Jobs</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const applications = [
+      {
+        id: 1,
+        jobTitle: "Frontend Developer Intern",
+        company: "TechWorld",
+        applicationDate: "2025-10-16",
+        lastUpdated: "2025-10-16",
+        status: "pending"
+      },
+      {
+        id: 2,
+        jobTitle: "Marketing Assistant",
+        company: "AdLab",
+        applicationDate: "2025-10-10",
+        lastUpdated: "2025-10-15",
+        status: "reviewed"
+      },
+      {
+        id: 3,
+        jobTitle: "Sales Promoter",
+        company: "ShopEase",
+        applicationDate: "2025-10-05",
+        lastUpdated: "2025-10-12",
+        status: "accepted"
+      }
+    ];
+
+    const applicationsContainer = document.getElementById('applicationsContainer');
+    const noApplications = document.getElementById('noApplications');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    function displayApplications(applicationsToShow) {
+      applicationsContainer.innerHTML = '';
+      
+      if (applicationsToShow.length === 0) {
+        noApplications.style.display = 'block';
+        return;
+      }
+      
+      noApplications.style.display = 'none';
+      
+      applicationsToShow.forEach(app => {
+        const appCard = document.createElement('div');
+        appCard.className = 'application-card';
+        appCard.innerHTML = `
+          <div class="application-header">
+            <h3 class="job-title">${app.jobTitle}</h3>
+            <span class="status-badge status-${app.status}">${getStatusText(app.status)}</span>
+          </div>
+          <div class="application-details">
+            <p class="company-name"><strong>Company:</strong> ${app.company}</p>
+            <p class="application-date">Applied on: <span>${formatDate(app.applicationDate)}</span></p>
+            <p class="last-updated">Last updated: <span>${formatDate(app.lastUpdated)}</span></p>
+          </div>
+          <div class="application-actions">
+            <button class="btn-view-details">View Details</button>
+            <button class="btn-withdraw">Withdraw Application</button>
+          </div>
+        `;
+        applicationsContainer.appendChild(appCard);
+      });
+    }
+
+    function getStatusText(status) {
+      const statusMap = {
+        pending: 'Pending',
+        reviewed: 'Under Review',
+        accepted: 'Accepted',
+        rejected: 'Rejected'
+      };
+      return statusMap[status] || status;
+    }
+
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    function filterApplications(status) {
+      if (status === 'all') {
+        return applications;
+      }
+      return applications.filter(app => app.status === status);
+    }
+
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        
+        const status = button.getAttribute('data-status');
+        const filteredApplications = filterApplications(status);
+        displayApplications(filteredApplications);
+      });
+    });
+
+    
+    displayApplications(applications);
+  </script>
+</body>
+</html>
