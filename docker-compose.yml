@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: job_board_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: community_job_board
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: jobboard_user
+      MYSQL_PASSWORD: jobboard_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - job_board_network
+
+  web:
+    build: .
+    container_name: job_board_web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./uploads:/var/www/html/uploads
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=jobboard_user
+      - DB_PASSWORD=jobboard_pass
+      - DB_NAME=community_job_board
+    networks:
+      - job_board_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: job_board_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+    depends_on:
+      - mysql
+    networks:
+      - job_board_network
+
+volumes:
+  mysql_data:
+
+networks:
+  job_board_network:
+    driver: bridge
