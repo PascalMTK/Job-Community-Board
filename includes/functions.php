@@ -55,5 +55,15 @@ function time_ago($datetime) {
     }
 }
 
+function redirect($url) {
+    header("Location: $url");
+    exit();
+}
+
+// Show alert message
+function show_message($message, $type = 'success') {
+    $_SESSION['message'] = $message;
+    $_SESSION['message_type'] = $type;
+}
 
 
